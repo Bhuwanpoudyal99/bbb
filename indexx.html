@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>💖 Infinite Love Surprise 💖 | Countdown to Nov 29</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe9ef 100%);
+            color: #4a2c2c;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #ffd0db; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #e6677b; border-radius: 10px; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 210, 225, 0.5), rgba(255, 235, 240, 0.3));
+        }
+        .hero-content { z-index: 2; animation: fadeInUp 1s ease; }
+        .hero h1 { font-size: 3.8rem; font-weight: 800; background: linear-gradient(135deg, #d14b6e, #b83b5e, #e66a88); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .heartbeat { animation: heartbeat 1.4s infinite; display: inline-block; font-size: 5rem; color: #e85d7a; margin: 1rem 0; }
+        @keyframes heartbeat { 0% { transform: scale(1); } 25% { transform: scale(1.2); } 40% { transform: scale(1); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+
+        /* Floating hearts */
+        .floating-hearts { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 1; }
+        .heart-float { position: absolute; font-size: 1.5rem; opacity: 0.6; animation: floatHeart 9s linear infinite; }
+        @keyframes floatHeart { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.8; } 90% { opacity: 0.8; } 100% { transform: translateY(-20vh) rotate(20deg); opacity: 0; } }
+
+        /* Gallery sections */
+        .gallery-section { padding: 4rem 0; background: #fffafc; }
+        .section-title { text-align: center; font-size: 2.8rem; font-weight: 700; margin-bottom: 2rem; }
+        .section-title:after { content: ''; display: block; width: 100px; height: 4px; background: #e6677b; margin: 12px auto; border-radius: 4px; }
+        
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .photo-card { background: white; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2); transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); cursor: pointer; }
+        .photo-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 30px 45px -12px rgba(0,0,0,0.35); }
+        .photo-card img { width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s ease; }
+        .photo-card:hover img { transform: scale(1.05); }
+        .photo-caption { padding: 1.2rem; text-align: center; font-weight: 600; background: linear-gradient(145deg, #fff, #fff2f5); }
+
+        /* Her Photos Polaroid */
+        .her-photos { background: linear-gradient(120deg, #ffeef4, #ffe1ea); border-radius: 60px; padding: 2rem; margin-top: 3rem; box-shadow: 0 20px 30px rgba(0,0,0,0.08); }
+        .polaroid-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2rem 0; }
+        .polaroid { background: white; padding: 12px 12px 25px 12px; border-radius: 18px; box-shadow: 0 15px 25px rgba(0,0,0,0.15); transform: rotate(var(--rot, 0deg)); transition: all 0.3s; width: 230px; cursor: pointer; }
+        .polaroid:hover { transform: rotate(0deg) scale(1.05); box-shadow: 0 25px 35px rgba(0,0,0,0.2); }
+        .polaroid img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
+        .polaroid-caption { text-align: center; margin-top: 12px; font-weight: 600; color: #b83b5e; }
+
+        /* Extra photos row 2 (More memories) */
+        .extra-photos { margin-top: 3rem; }
+        .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.8rem; }
+
+        /* Interactive features */
+        .interactive-zone { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 3rem 0; }
+        .love-meter, .memory-jar, .daily-quote, .wish-box { background: white; border-radius: 48px; padding: 1.2rem 1.8rem; text-align: center; box-shadow: 0 15px 25px rgba(0,0,0,0.1); flex: 1; min-width: 200px; }
+        .heart-progress { width: 200px; background: #ffe0e6; border-radius: 30px; height: 16px; margin: 12px auto; }
+        .heart-fill { width: 92%; height: 100%; background: linear-gradient(90deg, #f48fb1, #e85d7a); border-radius: 30px; }
+        .kiss-btn, .memory-btn, .quote-btn, .wish-btn { background: #ffb7c5; border: none; padding: 8px 18px; border-radius: 40px; font-weight: bold; margin-top: 10px; cursor: pointer; transition: 0.2s; }
+        .memory-list { max-height: 0; overflow: hidden; transition: max-height 0.6s ease; background: #fff0f5; border-radius: 30px; margin-top: 12px; padding: 0 1rem; text-align: left; }
+        .memory-list.show { max-height: 250px; padding: 1rem; overflow-y: auto; }
+
+        /* Love letter */
+        .love-letter-section { background: linear-gradient(145deg, #fff0f5, #ffe6ed); border-radius: 70px; padding: 2rem; margin: 2rem auto; }
+        .letter-card { max-width: 700px; margin: 0 auto; background: rgba(255,255,245,0.95); padding: 2rem; border-radius: 50px; text-align: center; }
+        .btn-surprise { background: #e85d7a; border: none; padding: 12px 28px; font-size: 1.2rem; font-weight: bold; color: white; border-radius: 40px; cursor: pointer; transition: 0.2s; }
+        .hidden-message { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.7s ease, opacity 0.5s; background: #fef7d2; border-radius: 30px; margin-top: 15px; }
+        .hidden-message.show { max-height: 350px; opacity: 1; padding: 1.5rem; }
+
+        /* Countdown & extra */
+        .countdown { background: #ffeef4; border-radius: 50px; padding: 0.8rem 1.5rem; text-align: center; flex: 1; }
+        .timer-digits { font-size: 1.6rem; font-weight: 800; color: #c74a6b; font-family: monospace; letter-spacing: 2px; }
+        
+        .floating-music { position: fixed; bottom: 20px; right: 20px; background: rgba(255,210,225,0.9); border-radius: 50%; width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; z-index: 99; backdrop-filter: blur(6px); }
+        
+        @media (max-width: 680px) { .hero h1 { font-size: 2.2rem; } .container { padding: 1rem; } .polaroid { width: 180px; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        footer { text-align: center; padding: 2rem; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="heartbeat"><i class="fas fa-heart"></i></div>
+        <h1>For You, My Eternal Love ❤️</h1>
+        <div style="font-size: 1.5rem; margin: 1rem;">You are my greatest adventure</div>
+        <div><i class="fas fa-star" style="color:#ffb347;"></i> <i class="fas fa-heart" style="color:#e85d7a;"></i> <i class="fas fa-star"></i> <i class="fas fa-heart"></i> <i class="fas fa-star"></i></div>
+    </div>
+</section>
+
+<!-- MAIN GALLERY - More Photos than ever -->
+<div class="gallery-section">
+    <div class="container">
+        <div class="section-title">✨ Our Beautiful Memories ✨</div>
+        <div class="photo-grid" id="photoGrid">
+            <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (1).jpeg" alt="love"><div class="photo-caption"><i class="fas fa-heart"></i> First Kiss Magic</div></div>
+            <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (2).jpeg" alt="sunset"><div class="photo-caption"><i class="fas fa-sun"></i> Golden Sunset</div></div>
+            <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (3).jpeg" alt="coffee"><div class="photo-caption"><i class="fas fa-mug-hot"></i> Coffee & Us</div></div>
+            <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (4).jpeg" alt="music"><div class="photo-caption"><i class="fas fa-music"></i> Dancing Stars</div></div>
+            <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (5).jpeg" alt="walk"><div class="photo-caption"><i class="fas fa-walking"></i> Hand in Hand</div></div>
+            <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (6).jpeg" alt="beach"><div class="photo-caption"><i class="fas fa-umbrella-beach"></i> Beach Love</div></div>
+ <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (7).jpeg" alt="beach"><div class="photo-caption"><i class="fas fa-umbrella-beach"></i> Beach Love</div></div>
+ <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (8).jpeg" alt="beach"><div class="photo-caption"><i class="fas fa-umbrella-beach"></i> Beach Love</div></div>
+        </div>
+        
+        <!-- HER PHOTOS Section (more polaroids) -->
+        <div class="her-photos">
+            <h3 style="text-align: center; font-size: 2rem;"><i class="fas fa-camera-retro"></i> Beautiful You - Her Polaroid Wall</h3>
+            <div class="polaroid-grid" id="polaroidGrid">
+                <div class="polaroid" style="--rot: -2deg;"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (9).jpeg" alt="smile"><div class="polaroid-caption">✨ That million-dollar smile ✨</div></div>
+                <div class="polaroid" style="--rot: 3deg;"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (10).jpeg" alt="eyes"><div class="polaroid-caption">💫 Eyes like galaxies 💫</div></div>
+                <div class="polaroid" style="--rot: -1deg;"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (11).jpeg" alt="laugh"><div class="polaroid-caption">🌸 Laughter of my heart 🌸</div></div>
+                <div class="polaroid" style="--rot: 2deg;"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (12).jpeg" alt="grace"><div class="polaroid-caption">🌹 Elegance & Grace 🌹</div></div>
+                <div class="polaroid" style="--rot: -3deg;"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (13).jpeg" alt="nature"><div class="polaroid-caption">🍃 Nature's angel 🍃</div></div>
+                <div class="polaroid" style="--rot: 1deg;"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (14).jpeg" alt="candid"><div class="polaroid-caption">💖 Candid perfection 💖</div></div>
+            </div>
+            <p style="text-align: center;"><i class="fas fa-hand-pointer"></i> Click any polaroid for a love note!</p>
+        </div>
+        
+        <!-- EXTRA MEMORIES ROW - even more photos -->
+        <div class="extra-photos">
+            <h3 style="text-align: center; font-size: 1.8rem;"><i class="fas fa-images"></i> More Sweet Moments</h3>
+            <div class="mini-grid" id="extraGrid">
+                <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (15).jpeg" alt="romance"><div class="photo-caption"><i class="fas fa-tree"></i> Nature & Love</div></div>
+                <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (16).jpeg" alt="sunset2"><div class="photo-caption"><i class="fas fa-cloud-sun"></i> Sunset Kiss</div></div>
+                <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (17).jpeg" alt="candle"><div class="photo-caption"><i class="fas fa-candle"></i> Candlelight Dinner</div></div>
+                <div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (18).jpeg" alt="stars"><div class="photo-caption"><i class="fas fa-star-of-life"></i> Stargazing</div></div>
+<div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (19).jpeg" alt="stars"><div class="photo-caption"><i class="fas fa-star-of-life"></i> Stargazing</div></div>
+<div class="photo-card"><img src="C:\Users\Dell\Desktop\nayaaa projeeect/bb (20).jpeg" alt="stars"><div class="photo-caption"><i class="fas fa-star-of-life"></i> Stargazing</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Interactive Cool Features - MORE FEATURES -->
+<div class="container">
+    <div class="interactive-zone">
+        <div class="love-meter">
+            <i class="fas fa-heartbeat fa-2x" style="color:#e6677b;"></i>
+            <p><strong>Love Intensity</strong></p>
+            <div class="heart-progress"><div class="heart-fill" id="loveFill" style="width: 88%;"></div></div>
+            <p id="lovePercent">💕 88% Pure Love 💕</p>
+            <button class="kiss-btn ripple" id="boostLoveBtn"><i class="fas fa-kiss-wink-heart"></i> Blow a Kiss 💋</button>
+        </div>
+        
+        <div class="memory-jar">
+            <i class="fas fa-jar fa-2x"></i>
+            <p><strong>Memory Jar</strong> <i class="fas fa-heart"></i></p>
+            <button class="memory-btn ripple" id="memoryJarBtn"><i class="fas fa-gift"></i> Open Sweet Memories</button>
+            <div id="memoryList" class="memory-list">
+                <p>📅 The day we first met — magic happened.</p>
+                <p>🍦 I see you first time at your mama ghar puran.</p>
+                <p>🌙 i fall in love with youuu.</p>
+                <p>🎁 i dream about you at that night.</p>
+                <p>💖 "You make my world brighter" - forever.</p>
+            </div>
+        </div>
+        
+        <div class="daily-quote">
+            <i class="fas fa-quote-left fa-2x"></i>
+            <p><strong>Daily Love Note</strong></p>
+            <p id="dailyQuoteText" style="font-style:italic; margin: 10px 0;">"You are my today and all of my tomorrows."</p>
+            <button class="quote-btn ripple" id="newQuoteBtn"><i class="fas fa-sync-alt"></i> New Love Quote</button>
+        </div>
+        
+        <div class="wish-box">
+            <i class="fas fa-star fa-2x"></i>
+            <p><strong>Make a Wish</strong></p>
+            <button class="wish-btn ripple" id="wishBtn"><i class="fas fa-magic"></i> Send a Star Wish ✨</button>
+            <div id="wishDisplay" style="font-size: 0.9rem; margin-top: 10px; color:#b83b5e;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Love Letter Surprise -->
+<div class="container">
+    <div class="love-letter-section">
+        <div class="letter-card">
+            <h3><i class="fas fa-envelope-open-text"></i> A Secret Letter For You</h3>
+            <button class="btn-surprise ripple" id="revealBtn">💌 Open The Love Letter 💌</button>
+            <div id="secretMessageBox" class="hidden-message">
+                <i class="fas fa-heart" style="font-size:2rem; color:#e6677b;"></i>
+                <p style="font-size:1.4rem; font-weight:bold;">My Dearest Love,</p>
+                <p>You are the reason I believe in magic, in forever, and in soulmates. Every day with you feels like a beautiful dream come true. I love you more than all the stars in the universe. ✨🌙</p>
+                <p>Counting down to November 29th with so much excitement. You make my world complete.</p>
+                <p>Yours eternally, <br> <strong>❤️ Your Forever Person ❤️</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Countdown to NOVEMBER 29 + Flower Shower + Surprise Button -->
+<div class="container">
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; align-items: center;">
+        <div class="countdown">
+            <p><i class="far fa-calendar-heart"></i> ❤️ Countdown to November 29th ❤️</p>
+            <div class="timer-digits" id="countdownTimer">--d --h --m --s</div>
+            <small>Our special day is coming! ✨</small>
+        </div>
+        <button id="flowerShowerBtn" class="btn-surprise" style="background:#b35d74;"><i class="fas fa-feather-alt"></i> Shower Flowers & Hearts 🌸</button>
+        <button id="surpriseFireworksBtn" class="btn-surprise" style="background:#d45a78;"><i class="fas fa-fire"></i> Love Fireworks 🎆</button>
+    </div>
+</div>
+
+<!-- Romantic Song Player (simulated) + additional mini feature -->
+<div style="text-align: center; margin: 2rem 0;">
+    <button id="romanticSongBtn" class="btn-surprise" style="background:#c95c77;"><i class="fas fa-headphones"></i> Play Our Song (Love Melody)</button>
+    <p id="songStatus" style="margin-top: 8px; font-style: italic; color:#b35d74;"></p>
+</div>
+
+<footer>
+    Made with infinite love 💖 Every pixel is a piece of my heart for you. <br>
+    Counting every second until November 29th 🗓️ | You are my sunshine 🌞
+</footer>
+
+<div class="floating-music" id="musicNote"><i class="fas fa-music"></i></div>
+
+<script>
+    // ---------- COUNTDOWN TO NOVEMBER 29, 2026 ----------
+    const targetDate = new Date(2026, 10, 29, 0, 0, 0);
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate.getTime() - now;
+        if (distance < 0) {
+            document.getElementById('countdownTimer').innerHTML = "🎉 IT'S NOVEMBER 29th! 🎉";
+            createConfettiHearts();
+            return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('countdownTimer').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        setTimeout(updateCountdown, 1000);
+    }
+    updateCountdown();
+
+    // Floating hearts background
+    const heartsContainer = document.getElementById('floatingHearts');
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart-float');
+        heart.style.fontSize = (Math.random() * 24 + 14) + 'px';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = Math.random() * 7 + 6 + 's';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        heart.innerHTML = ['❤️','💖','💗','💓','🌸','✨','🌹','💕'][Math.floor(Math.random()*8)];
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 9000);
+    }
+    setInterval(createHeart, 600);
+
+    // Love Meter
+    let loveValue = 88;
+    const loveFill = document.getElementById('loveFill');
+    const lovePercentSpan = document.getElementById('lovePercent');
+    const boostBtn = document.getElementById('boostLoveBtn');
+    function updateLove() {
+        loveFill.style.width = loveValue + '%';
+        lovePercentSpan.innerHTML = loveValue >= 100 ? "💯 INFINITE LOVE! 💯" : `💕 ${loveValue}% Pure Love 💕`;
+        if(loveValue >= 100) { lovePercentSpan.innerHTML = "∞ INFINITE LOVE ∞ You filled my heart! 💖"; createConfettiHearts(); }
+    }
+    boostBtn.addEventListener('click', () => {
+        if(loveValue < 100) { loveValue = Math.min(100, loveValue + 4); updateLove(); createFloatingKiss(); if(loveValue === 100) alert("💖 I LOVE YOU TO THE MOON AND BACK! 💖"); }
+        else { createConfettiHearts(); alert("My love for you is already infinite! ❤️"); }
+    });
+    function createFloatingKiss() {
+        let kissDiv = document.createElement('div'); kissDiv.innerHTML = '💋💖'; kissDiv.style.position = 'fixed'; kissDiv.style.left = (boostBtn.getBoundingClientRect().left + 30) + 'px'; kissDiv.style.top = (boostBtn.getBoundingClientRect().top - 20) + 'px'; kissDiv.style.fontSize = '2rem'; kissDiv.style.pointerEvents = 'none'; kissDiv.style.transition = 'all 0.8s ease'; document.body.appendChild(kissDiv); setTimeout(() => { kissDiv.style.transform = 'translateY(-100px) rotate(15deg)'; kissDiv.style.opacity = '0'; }, 20); setTimeout(() => kissDiv.remove(), 900);
+    }
+    function createConfettiHearts() { for(let i=0;i<50;i++) { let heartC = document.createElement('div'); heartC.innerHTML = '❤️'; heartC.style.position = 'fixed'; heartC.style.left = Math.random() * window.innerWidth + 'px'; heartC.style.top = '50%'; heartC.style.fontSize = (Math.random() * 24 + 12) + 'px'; heartC.style.transition = 'all 1.2s ease'; heartC.style.pointerEvents = 'none'; heartC.style.zIndex = '9999'; document.body.appendChild(heartC); setTimeout(() => { heartC.style.transform = `translateY(-400px) rotate(${Math.random()*40-20}deg)`; heartC.style.opacity = '0'; }, 10); setTimeout(() => heartC.remove(), 1300); } }
+
+    // Memory Jar
+    const memoryBtn = document.getElementById('memoryJarBtn'); const memoryList = document.getElementById('memoryList');
+    memoryBtn.addEventListener('click', () => { memoryList.classList.toggle('show'); memoryBtn.innerHTML = memoryList.classList.contains('show') ? '<i class="fas fa-heart-broken"></i> Close Jar' : '<i class="fas fa-gift"></i> Open Sweet Memories'; });
+
+    // Daily Quotes
+    const quotes = ["💖 Your love is my favorite melody. 💖","🌹 Every moment with you is a beautiful dream. 🌹","✨ You are the reason my world shines so bright. ✨","💫 I fall for you more with each sunrise. 💫","🌸 In a sea of people, my eyes will always search for you. 🌸","💕 Loving you is the easiest and best thing I've ever done. 💕","🌟 You're my greatest adventure and my safest home. 🌟","🍂 Counting down to November 29th — every second is a gift with you. 🍂","💎 You are my treasure, my heart, my everything. 💎"];
+    const quoteText = document.getElementById('dailyQuoteText'); const newQuoteBtn = document.getElementById('newQuoteBtn');
+    newQuoteBtn.addEventListener('click', () => { let random = Math.floor(Math.random() * quotes.length); quoteText.innerHTML = `"${quotes[random]}"`; quoteText.style.transform = 'scale(1.02)'; setTimeout(() => quoteText.style.transform = 'scale(1)', 200); });
+
+    // Wish feature
+    const wishBtn = document.getElementById('wishBtn'); const wishDisplay = document.getElementById('wishDisplay');
+    const wishes = ["✨ May our love grow stronger every day! ✨","💫 I wish for endless hugs and laughter with you. 💫","🌟 Wish: November 29th comes with fireworks of love. 🌟","💖 Wish: You always feel as loved as you truly are. 💖","🌸 Wish: Every sunrise brings us closer. 🌸"];
+    wishBtn.addEventListener('click', () => { let randWish = wishes[Math.floor(Math.random() * wishes.length)]; wishDisplay.innerHTML = randWish; createConfettiHearts(); });
+
+    // Secret Letter
+    const revealBtn = document.getElementById('revealBtn'); const secretBox = document.getElementById('secretMessageBox');
+    revealBtn.addEventListener('click', () => { secretBox.classList.toggle('show'); if(secretBox.classList.contains('show')) { revealBtn.innerHTML = '💌 Our Eternal Secret 💌'; createConfettiHearts(); } else { revealBtn.innerHTML = '💌 Open The Love Letter 💌'; } });
+
+    // Flower Shower
+    const flowerBtn = document.getElementById('flowerShowerBtn');
+    flowerBtn.addEventListener('click', () => { for(let i=0;i<100;i++) { setTimeout(() => { let flower = document.createElement('div'); flower.innerHTML = ['🌸','🌹','🌼','🌺','❤️','💖','✨','💐','🌷'][Math.floor(Math.random()*9)]; flower.style.position = 'fixed'; flower.style.left = Math.random() * window.innerWidth + 'px'; flower.style.bottom = '-20px'; flower.style.fontSize = (Math.random() * 30 + 18) + 'px'; flower.style.opacity = '0.9'; flower.style.pointerEvents = 'none'; flower.style.zIndex = '9999'; flower.style.transition = 'transform 2s linear, opacity 2s'; document.body.appendChild(flower); setTimeout(() => { flower.style.transform = `translateY(-900px) rotate(${Math.random() * 50 - 25}deg)`; flower.style.opacity = '0'; }, 20); setTimeout(() => flower.remove(), 2100); }, i * 15); } alert("🌷 Flowers for my beautiful love! November 29th will be magical! 🌷"); });
+
+    // Fireworks Surprise
+    const fireworksBtn = document.getElementById('surpriseFireworksBtn');
+    fireworksBtn.addEventListener('click', () => { for(let i=0;i<60;i++) { let fire = document.createElement('div'); fire.innerHTML = ['🎆','✨','💥','❤️','💖','🎇'][Math.floor(Math.random()*6)]; fire.style.position = 'fixed'; fire.style.left = Math.random() * window.innerWidth + 'px'; fire.style.top = Math.random() * window.innerHeight + 'px'; fire.style.fontSize = (Math.random() * 28 + 20) + 'px'; fire.style.pointerEvents = 'none'; fire.style.transition = 'all 0.6s ease-out'; fire.style.zIndex = '9999'; document.body.appendChild(fire); setTimeout(() => { fire.style.transform = 'scale(1.8)'; fire.style.opacity = '0'; }, 20); setTimeout(() => fire.remove(), 800); } alert("🎆 BOOM! Love fireworks just for you! 🎆"); });
+
+    // Romantic Song Simulator
+    const songBtn = document.getElementById('romanticSongBtn'); const songStatus = document.getElementById('songStatus');
+    songBtn.addEventListener('click', () => { songStatus.innerHTML = "🎵 'Perfect' by Ed Sheeran - Playing in our hearts forever 🎵"; createConfettiHearts(); setTimeout(() => { songStatus.innerHTML = "💖 That's our eternal melody! 💖"; }, 3000); });
+
+    // Photo Clicks
+    document.querySelectorAll('.photo-card').forEach((card, idx) => { const messages = ["💕 This memory shines like your smile!", "🌅 Every sunset is more beautiful with you!", "🌸 You are my greatest romance!", "🎶 Our love dances like music!", "💖 Forever in my heart!", "🌟 You light up my world!"]; card.addEventListener('click', () => { let toast = document.createElement('div'); toast.innerText = messages[idx % messages.length]; toast.style.position = 'fixed'; toast.style.bottom = '20%'; toast.style.left = '50%'; toast.style.transform = 'translateX(-50%)'; toast.style.backgroundColor = '#f5c6d0'; toast.style.color = '#9e3c58'; toast.style.padding = '12px 25px'; toast.style.borderRadius = '50px'; toast.style.fontWeight = 'bold'; toast.style.zIndex = '10000'; document.body.appendChild(toast); setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 1700); for(let i=0;i<8;i++) { let miniHeart = document.createElement('div'); miniHeart.innerHTML = '❤️'; miniHeart.style.position = 'absolute'; miniHeart.style.left = (card.getBoundingClientRect().left + Math.random() * card.offsetWidth) + 'px'; miniHeart.style.top = (card.getBoundingClientRect().top + Math.random() * card.offsetHeight) + 'px'; miniHeart.style.fontSize = '20px'; miniHeart.style.pointerEvents = 'none'; miniHeart.style.transition = 'all 0.9s ease'; document.body.appendChild(miniHeart); setTimeout(() => { miniHeart.style.transform = 'translateY(-70px)'; miniHeart.style.opacity = '0'; }, 15); setTimeout(() => miniHeart.remove(), 1000); } }); });
+
+    // Polaroid clicks
+    const polaroids = document.querySelectorAll('.polaroid'); const polaroidNotes = ["🌟 Your smile lights up my whole world! 🌟","💖 Those eyes hold all my tomorrows 💖","🎵 Your laugh is my favorite symphony 🎵","🌹 You are poetry in human form 🌹","🍃 You're my peace and my wild 🌊","💕 Candid perfection, that's you! 💕"];
+    polaroids.forEach((pol, index) => { pol.addEventListener('click', () => { let noteDiv = document.createElement('div'); noteDiv.innerText = polaroidNotes[index % polaroidNotes.length]; noteDiv.style.position = 'fixed'; noteDiv.style.top = '40%'; noteDiv.style.left = '50%'; noteDiv.style.transform = 'translate(-50%, -50%)'; noteDiv.style.backgroundColor = '#fff0f0'; noteDiv.style.padding = '15px 25px'; noteDiv.style.borderRadius = '60px'; noteDiv.style.fontWeight = 'bold'; noteDiv.style.border = '2px solid #e85d7a'; noteDiv.style.zIndex = '10001'; noteDiv.style.fontSize = '1.2rem'; document.body.appendChild(noteDiv); setTimeout(() => noteDiv.remove(), 2000); createConfettiHearts(); }); });
+
+    // Music Note
+    const musicDiv = document.getElementById('musicNote');
+    musicDiv.addEventListener('click', () => { for(let i=0;i<25;i++) { let note = document.createElement('div'); note.innerHTML = ['🎵','🎶','💖','❤️','🎵','🎶'][Math.floor(Math.random()*6)]; note.style.position = 'fixed'; note.style.left = (musicDiv.getBoundingClientRect().left - 15 + Math.random() * 50) + 'px'; note.style.bottom = '70px'; note.style.fontSize = '1.8rem'; note.style.transition = 'all 1s ease'; note.style.pointerEvents = 'none'; document.body.appendChild(note); setTimeout(() => { note.style.transform = `translateY(-200px) translateX(${Math.random()*80-40}px)`; note.style.opacity = '0'; }, 10); setTimeout(() => note.remove(), 1100); } alert("🎶 This song of my heart plays only for you! 🎶"); });
+
+    updateLove();
+    setInterval(() => { if(Math.random() > 0.7) createHeart(); }, 500);
+    console.log("💖 Love page loaded — Countdown to November 29, 2026 💖");
+</script>
+</body>
+</html>
